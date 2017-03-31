@@ -75,4 +75,5 @@ environment variable to pretty much anything), but a real generator otherwise.
 
 ## History ##
 
+* v0.1.1 - Documentation added
 * v0.1.0 - Initial release
