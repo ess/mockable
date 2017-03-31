@@ -21,5 +21,7 @@ import (
 // Mocked is true if the MOCKABLE environment variable is set, but is false
 // otherwise.
 func Mocked() bool {
-	return len(os.Getenv("MOCKABLE")) > 0
+	_, present := os.LookupEnv("MOCKABLE")
+
+	return present
 }
