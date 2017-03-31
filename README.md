@@ -75,6 +75,7 @@ environment variable to pretty much anything), but a real generator otherwise.
 
 ## History ##
 
+* v0.1.3 - I like y'all, so I've removed the vendor from this repo
 * v0.1.2 - Added Enable()/Disable() for use in consumer unit tests
 * v0.1.1 - Documentation added
 * v0.1.0 - Initial release
