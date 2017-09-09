@@ -104,6 +104,7 @@ func TestExpecationsMet(t *testing.T) {
 ```
 ## History ##
 
+* v0.2.0 - Now with test helpers
 * v0.1.3 - I like y'all, so I've removed the vendor from this repo
 * v0.1.2 - Added Enable()/Disable() for use in consumer unit tests
 * v0.1.1 - Documentation added
