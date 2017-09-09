@@ -12,26 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package mockable
+package core
 
 import (
-	"github.com/ess/mockable/core"
+	"os"
+)
+
+const (
+	envVar = "MOCKABLE"
 )
 
 // Mocked is true if the MOCKABLE environment variable is set, but is false
 // otherwise.
 func Mocked() bool {
-	return core.Mocked()
+	_, present := os.LookupEnv(envVar)
+
+	return present
 }
 
 // Enable sets the MOCKABLE environment variable to a non-null value. This is
 // really only handy for use within test suites.
 func Enable() {
-	core.Enable()
+	if !Mocked() {
+		os.Setenv(envVar, "1")
+	}
 }
 
 // Disable deletes the MOCKABLE environment variable from the environment. This
 // is really only handy for use within test suites.
 func Disable() {
-	core.Disable()
+	if Mocked() {
+		os.Unsetenv(envVar)
+	}
 }
