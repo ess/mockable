@@ -73,8 +73,38 @@ Now, when the above is used and `widget.NewGenerator()` is called, a fake
 generator is returned if mocking is enabled (by setting the `MOCKABLE`
 environment variable to pretty much anything), but a real generator otherwise.
 
+## Test Helpers ##
+
+In addition to the main functionality, there are a few helpers available for
+writing your unit tests.
+
+In the main `mockable` package, there is `Enable()` and `Disable()`, which are
+used to explicitly set the mocking state.
+
+Additionally, in `mockable/mocking`,we have `EnabledDo` and `DisabledDo`. Both
+of these functions take a `*testing.T` and a `func(*testing.T)` and are used 
+like so:
+
+```go
+package main
+
+import (
+  "testing"
+
+  "github.com/ess/mockable/mocking"
+)
+
+func TestExpecationsMet(t *testing.T) {
+  mocking.EnabledDo(t, func(t *testing.T) {
+    if !ExpectationsMet() {
+      t.Error("Expectations not met when mocking is enabled!!!")
+    }
+  })
+}
+```
 ## History ##
 
+* v0.2.0 - Now with test helpers
 * v0.1.3 - I like y'all, so I've removed the vendor from this repo
 * v0.1.2 - Added Enable()/Disable() for use in consumer unit tests
 * v0.1.1 - Documentation added
